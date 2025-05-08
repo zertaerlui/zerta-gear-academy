@@ -22,8 +22,12 @@ jobs:
         with:
           targets: wasm32-unknown-unknown
 
+      - name: Install rust-src component
+        run: rustup component add rust-src
+
       - name: Check and test
         run: |
           cargo fmt --all --check
           cargo clippy --all-targets -- -D warnings -A unused-imports
-          cargo t
+          cargo test
+
